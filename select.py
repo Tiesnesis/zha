@@ -117,37 +117,39 @@ class ZHANonZCLSelectEntity(ZHAEnumSelectEntity):
 
 
 @CONFIG_DIAGNOSTIC_MATCH(cluster_handler_names=CLUSTER_HANDLER_IAS_WD)
-class ZHADefaultToneSelectEntity(ZHANonZCLSelectEntity):
+class ZHADefaultToneSelectEntity(
+    ZHANonZCLSelectEntity, id_suffix=IasWd.Warning.WarningMode.__name__
+):
     """Representation of a ZHA default siren tone select entity."""
 
-    _unique_id_suffix = IasWd.Warning.WarningMode.__name__
     _enum = IasWd.Warning.WarningMode
     _attr_name = "Default siren tone"
 
 
 @CONFIG_DIAGNOSTIC_MATCH(cluster_handler_names=CLUSTER_HANDLER_IAS_WD)
-class ZHADefaultSirenLevelSelectEntity(ZHANonZCLSelectEntity):
+class ZHADefaultSirenLevelSelectEntity(
+    ZHANonZCLSelectEntity, id_suffix=IasWd.Warning.SirenLevel.__name__
+):
     """Representation of a ZHA default siren level select entity."""
 
-    _unique_id_suffix = IasWd.Warning.SirenLevel.__name__
     _enum = IasWd.Warning.SirenLevel
     _attr_name = "Default siren level"
 
 
 @CONFIG_DIAGNOSTIC_MATCH(cluster_handler_names=CLUSTER_HANDLER_IAS_WD)
-class ZHADefaultStrobeLevelSelectEntity(ZHANonZCLSelectEntity):
+class ZHADefaultStrobeLevelSelectEntity(
+    ZHANonZCLSelectEntity, id_suffix=IasWd.StrobeLevel.__name__
+):
     """Representation of a ZHA default siren strobe level select entity."""
 
-    _unique_id_suffix = IasWd.StrobeLevel.__name__
     _enum = IasWd.StrobeLevel
     _attr_name = "Default strobe level"
 
 
 @CONFIG_DIAGNOSTIC_MATCH(cluster_handler_names=CLUSTER_HANDLER_IAS_WD)
-class ZHADefaultStrobeSelectEntity(ZHANonZCLSelectEntity):
+class ZHADefaultStrobeSelectEntity(ZHANonZCLSelectEntity, id_suffix=Strobe.__name__):
     """Representation of a ZHA default siren strobe select entity."""
 
-    _unique_id_suffix = Strobe.__name__
     _enum = Strobe
     _attr_name = "Default strobe"
 
@@ -228,10 +230,11 @@ class ZCLEnumSelectEntity(ZhaEntity, SelectEntity):
 
 
 @CONFIG_DIAGNOSTIC_MATCH(cluster_handler_names=CLUSTER_HANDLER_ON_OFF)
-class ZHAStartupOnOffSelectEntity(ZCLEnumSelectEntity):
+class ZHAStartupOnOffSelectEntity(
+    ZCLEnumSelectEntity, id_suffix=OnOff.StartUpOnOff.__name__
+):
     """Representation of a ZHA startup onoff select entity."""
 
-    _unique_id_suffix = OnOff.StartUpOnOff.__name__
     _select_attr = "start_up_on_off"
     _enum = OnOff.StartUpOnOff
     _attr_name = "Start-up behavior"
@@ -270,10 +273,9 @@ class TuyaPowerOnState(types.enum8):
         "_TZE200_9mahtqtg",
     },
 )
-class TuyaPowerOnStateSelectEntity(ZCLEnumSelectEntity):
+class TuyaPowerOnStateSelectEntity(ZCLEnumSelectEntity, id_suffix="power_on_state"):
     """Representation of a ZHA power on state select entity."""
 
-    _unique_id_suffix = "power_on_state"
     _select_attr = "power_on_state"
     _enum = TuyaPowerOnState
     _attr_name = "Power on state"
@@ -291,10 +293,9 @@ class TuyaBacklightMode(types.enum8):
     cluster_handler_names=CLUSTER_HANDLER_ON_OFF,
     models={"TS011F", "TS0121", "TS0001", "TS0002", "TS0003", "TS0004"},
 )
-class TuyaBacklightModeSelectEntity(ZCLEnumSelectEntity):
+class TuyaBacklightModeSelectEntity(ZCLEnumSelectEntity, id_suffix="backlight_mode"):
     """Representation of a ZHA backlight mode select entity."""
 
-    _unique_id_suffix = "backlight_mode"
     _select_attr = "backlight_mode"
     _enum = TuyaBacklightMode
     _attr_name = "Backlight mode"
@@ -330,10 +331,9 @@ class MoesBacklightMode(types.enum8):
         "_TZE200_9mahtqtg",
     },
 )
-class MoesBacklightModeSelectEntity(ZCLEnumSelectEntity):
+class MoesBacklightModeSelectEntity(ZCLEnumSelectEntity, id_suffix="backlight_mode"):
     """Moes devices have a different backlight mode select options."""
 
-    _unique_id_suffix = "backlight_mode"
     _select_attr = "backlight_mode"
     _enum = MoesBacklightMode
     _attr_name = "Backlight mode"
@@ -351,10 +351,9 @@ class AqaraMotionSensitivities(types.enum8):
     cluster_handler_names="opple_cluster",
     models={"lumi.motion.ac01", "lumi.motion.ac02", "lumi.motion.agl04"},
 )
-class AqaraMotionSensitivity(ZCLEnumSelectEntity):
+class AqaraMotionSensitivity(ZCLEnumSelectEntity, id_suffix="motion_sensitivity"):
     """Representation of a ZHA motion sensitivity configuration entity."""
 
-    _unique_id_suffix = "motion_sensitivity"
     _select_attr = "motion_sensitivity"
     _enum = AqaraMotionSensitivities
     _attr_name = "Motion sensitivity"
@@ -373,10 +372,9 @@ class HueV1MotionSensitivities(types.enum8):
     manufacturers={"Philips", "Signify Netherlands B.V."},
     models={"SML001"},
 )
-class HueV1MotionSensitivity(ZCLEnumSelectEntity):
+class HueV1MotionSensitivity(ZCLEnumSelectEntity, id_suffix="motion_sensitivity"):
     """Representation of a ZHA motion sensitivity configuration entity."""
 
-    _unique_id_suffix = "motion_sensitivity"
     _select_attr = "sensitivity"
     _attr_name = "Hue motion sensitivity"
     _enum = HueV1MotionSensitivities
@@ -397,10 +395,9 @@ class HueV2MotionSensitivities(types.enum8):
     manufacturers={"Philips", "Signify Netherlands B.V."},
     models={"SML002", "SML003", "SML004"},
 )
-class HueV2MotionSensitivity(ZCLEnumSelectEntity):
+class HueV2MotionSensitivity(ZCLEnumSelectEntity, id_suffix="motion_sensitivity"):
     """Representation of a ZHA motion sensitivity configuration entity."""
 
-    _unique_id_suffix = "motion_sensitivity"
     _select_attr = "sensitivity"
     _attr_name = "Hue motion sensitivity"
     _enum = HueV2MotionSensitivities
@@ -416,10 +413,9 @@ class AqaraMonitoringModess(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"lumi.motion.ac01"}
 )
-class AqaraMonitoringMode(ZCLEnumSelectEntity):
+class AqaraMonitoringMode(ZCLEnumSelectEntity, id_suffix="monitoring_mode"):
     """Representation of a ZHA monitoring mode configuration entity."""
 
-    _unique_id_suffix = "monitoring_mode"
     _select_attr = "monitoring_mode"
     _enum = AqaraMonitoringModess
     _attr_name = "Monitoring mode"
@@ -436,10 +432,9 @@ class AqaraApproachDistances(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"lumi.motion.ac01"}
 )
-class AqaraApproachDistance(ZCLEnumSelectEntity):
+class AqaraApproachDistance(ZCLEnumSelectEntity, id_suffix="approach_distance"):
     """Representation of a ZHA approach distance configuration entity."""
 
-    _unique_id_suffix = "approach_distance"
     _select_attr = "approach_distance"
     _enum = AqaraApproachDistances
     _attr_name = "Approach distance"
@@ -455,10 +450,9 @@ class AqaraE1ReverseDirection(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="window_covering", models={"lumi.curtain.agl001"}
 )
-class AqaraCurtainMode(ZCLEnumSelectEntity):
+class AqaraCurtainMode(ZCLEnumSelectEntity, id_suffix="window_covering_mode"):
     """Representation of a ZHA curtain mode configuration entity."""
 
-    _unique_id_suffix = "window_covering_mode"
     _select_attr = "window_covering_mode"
     _enum = AqaraE1ReverseDirection
     _attr_name = "Curtain mode"
@@ -474,10 +468,9 @@ class InovelliOutputMode(types.enum1):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names=CLUSTER_HANDLER_INOVELLI,
 )
-class InovelliOutputModeEntity(ZCLEnumSelectEntity):
+class InovelliOutputModeEntity(ZCLEnumSelectEntity, id_suffix="output_mode"):
     """Inovelli output mode control."""
 
-    _unique_id_suffix = "output_mode"
     _select_attr = "output_mode"
     _enum = InovelliOutputMode
     _attr_name: str = "Output mode"
@@ -495,10 +488,9 @@ class InovelliSwitchType(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names=CLUSTER_HANDLER_INOVELLI,
 )
-class InovelliSwitchTypeEntity(ZCLEnumSelectEntity):
+class InovelliSwitchTypeEntity(ZCLEnumSelectEntity, id_suffix="switch_type"):
     """Inovelli switch type control."""
 
-    _unique_id_suffix = "switch_type"
     _select_attr = "switch_type"
     _enum = InovelliSwitchType
     _attr_name: str = "Switch type"
@@ -514,10 +506,9 @@ class InovelliLedScalingMode(types.enum1):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names=CLUSTER_HANDLER_INOVELLI,
 )
-class InovelliLedScalingModeEntity(ZCLEnumSelectEntity):
+class InovelliLedScalingModeEntity(ZCLEnumSelectEntity, id_suffix="led_scaling_mode"):
     """Inovelli led mode control."""
 
-    _unique_id_suffix = "led_scaling_mode"
     _select_attr = "led_scaling_mode"
     _enum = InovelliLedScalingMode
     _attr_name: str = "Led scaling mode"
@@ -533,10 +524,11 @@ class InovelliNonNeutralOutput(types.enum1):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names=CLUSTER_HANDLER_INOVELLI,
 )
-class InovelliNonNeutralOutputEntity(ZCLEnumSelectEntity):
+class InovelliNonNeutralOutputEntity(
+    ZCLEnumSelectEntity, id_suffix="increased_non_neutral_output"
+):
     """Inovelli non neutral output control."""
 
-    _unique_id_suffix = "increased_non_neutral_output"
     _select_attr = "increased_non_neutral_output"
     _enum = InovelliNonNeutralOutput
     _attr_name: str = "Non neutral output"
@@ -552,10 +544,9 @@ class AqaraFeedingMode(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"aqara.feeder.acn001"}
 )
-class AqaraPetFeederMode(ZCLEnumSelectEntity):
+class AqaraPetFeederMode(ZCLEnumSelectEntity, id_suffix="feeding_mode"):
     """Representation of an Aqara pet feeder mode configuration entity."""
 
-    _unique_id_suffix = "feeding_mode"
     _select_attr = "feeding_mode"
     _enum = AqaraFeedingMode
     _attr_name = "Mode"
@@ -573,10 +564,9 @@ class AqaraThermostatPresetMode(types.enum8):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"lumi.airrtc.agl001"}
 )
-class AqaraThermostatPreset(ZCLEnumSelectEntity):
+class AqaraThermostatPreset(ZCLEnumSelectEntity, id_suffix="preset"):
     """Representation of an Aqara thermostat preset configuration entity."""
 
-    _unique_id_suffix = "preset"
     _select_attr = "preset"
     _enum = AqaraThermostatPresetMode
     _attr_name = "Preset"

@@ -252,32 +252,29 @@ class SinopeLeakStatus(BinarySensor):
         "_TZE200_htnnfasr",
     },
 )
-class FrostLock(BinarySensor):
+class FrostLock(BinarySensor, id_suffix="frost_lock"):
     """ZHA BinarySensor."""
 
     SENSOR_ATTR = "frost_lock"
-    _unique_id_suffix = "frost_lock"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.LOCK
     _attr_name: str = "Frost lock"
 
 
 @MULTI_MATCH(cluster_handler_names="ikea_airpurifier")
-class ReplaceFilter(BinarySensor):
+class ReplaceFilter(BinarySensor, id_suffix="replace_filter"):
     """ZHA BinarySensor."""
 
     SENSOR_ATTR = "replace_filter"
-    _unique_id_suffix = "replace_filter"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.PROBLEM
     _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
     _attr_name: str = "Replace filter"
 
 
 @MULTI_MATCH(cluster_handler_names="opple_cluster", models={"aqara.feeder.acn001"})
-class AqaraPetFeederErrorDetected(BinarySensor):
+class AqaraPetFeederErrorDetected(BinarySensor, id_suffix="error_detected"):
     """ZHA aqara pet feeder error detected binary sensor."""
 
     SENSOR_ATTR = "error_detected"
-    _unique_id_suffix = "error_detected"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.PROBLEM
     _attr_name: str = "Error detected"
 
@@ -286,31 +283,28 @@ class AqaraPetFeederErrorDetected(BinarySensor):
     cluster_handler_names="opple_cluster",
     models={"lumi.plug.mmeu01", "lumi.plug.maeu01"},
 )
-class XiaomiPlugConsumerConnected(BinarySensor):
+class XiaomiPlugConsumerConnected(BinarySensor, id_suffix="consumer_connected"):
     """ZHA Xiaomi plug consumer connected binary sensor."""
 
     SENSOR_ATTR = "consumer_connected"
-    _unique_id_suffix = "consumer_connected"
     _attr_name: str = "Consumer connected"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.PLUG
 
 
 @MULTI_MATCH(cluster_handler_names="opple_cluster", models={"lumi.airrtc.agl001"})
-class AqaraThermostatWindowOpen(BinarySensor):
+class AqaraThermostatWindowOpen(BinarySensor, id_suffix="window_open"):
     """ZHA Aqara thermostat window open binary sensor."""
 
     SENSOR_ATTR = "window_open"
-    _unique_id_suffix = "window_open"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.WINDOW
     _attr_name: str = "Window open"
 
 
 @MULTI_MATCH(cluster_handler_names="opple_cluster", models={"lumi.airrtc.agl001"})
-class AqaraThermostatValveAlarm(BinarySensor):
+class AqaraThermostatValveAlarm(BinarySensor, id_suffix="valve_alarm"):
     """ZHA Aqara thermostat valve alarm binary sensor."""
 
     SENSOR_ATTR = "valve_alarm"
-    _unique_id_suffix = "valve_alarm"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.PROBLEM
     _attr_name: str = "Valve alarm"
 
@@ -318,11 +312,10 @@ class AqaraThermostatValveAlarm(BinarySensor):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"lumi.airrtc.agl001"}
 )
-class AqaraThermostatCalibrated(BinarySensor):
+class AqaraThermostatCalibrated(BinarySensor, id_suffix="calibrated"):
     """ZHA Aqara thermostat calibrated binary sensor."""
 
     SENSOR_ATTR = "calibrated"
-    _unique_id_suffix = "calibrated"
     _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
     _attr_name: str = "Calibrated"
 
@@ -330,20 +323,18 @@ class AqaraThermostatCalibrated(BinarySensor):
 @CONFIG_DIAGNOSTIC_MATCH(
     cluster_handler_names="opple_cluster", models={"lumi.airrtc.agl001"}
 )
-class AqaraThermostatExternalSensor(BinarySensor):
+class AqaraThermostatExternalSensor(BinarySensor, id_suffix="sensor"):
     """ZHA Aqara thermostat external sensor binary sensor."""
 
     SENSOR_ATTR = "sensor"
-    _unique_id_suffix = "sensor"
     _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
     _attr_name: str = "External sensor"
 
 
 @MULTI_MATCH(cluster_handler_names="opple_cluster", models={"lumi.sensor_smoke.acn03"})
-class AqaraLinkageAlarmState(BinarySensor):
+class AqaraLinkageAlarmState(BinarySensor, id_suffix="linkage_alarm_state"):
     """ZHA Aqara linkage alarm state binary sensor."""
 
     SENSOR_ATTR = "linkage_alarm_state"
-    _unique_id_suffix = "linkage_alarm_state"
     _attr_name: str = "Linkage alarm state"
     _attr_device_class: BinarySensorDeviceClass = BinarySensorDeviceClass.SMOKE

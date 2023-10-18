@@ -355,7 +355,7 @@ class ElectricalMeasurementApparentPower(
 
 @MULTI_MATCH(cluster_handler_names=CLUSTER_HANDLER_ELECTRICAL_MEASUREMENT)
 # pylint: disable-next=hass-invalid-inheritance # needs fixing
-class ElectricalMeasurementApparentPowerPhB(
+class ElectricalMeasurementApparentPowerPhC(
     ElectricalMeasurementApparentPower, id_suffix="apparent_power_ph_b"
 ):
     """Apparent power measurement."""
