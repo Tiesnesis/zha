@@ -671,7 +671,7 @@ class ElectricalMeasurementPowerFactor(PolledElectricalMeasurement):
     _div_mul_prefix = None
 
 
-    @MULTI_MATCH(cluster_handler_names=CLUSTER_HANDLER_ELECTRICAL_MEASUREMENT)
+@MULTI_MATCH(cluster_handler_names=CLUSTER_HANDLER_ELECTRICAL_MEASUREMENT)
 # pylint: disable-next=hass-invalid-inheritance # needs fixing
 class ElectricalMeasurementPowerFactorPhB(ElectricalMeasurementPowerFactor):
     """Power Factor measurement."""
