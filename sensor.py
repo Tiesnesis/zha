@@ -42,6 +42,9 @@ _EXTRA_STATE_ATTRIBUTES: set[str] = {
     # Power
     "measurement_type",
     "apparent_power_max",
+    "apparent_power",
+    "apparent_power_ph_b",
+    "apparent_power_ph_c",
     "rms_current_max",
     "rms_voltage_max",
     "rms_voltage_ph_b_max",
