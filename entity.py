@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import Callable
-from functools import partial
+from functools import cached_property, partial
 import logging
 from typing import Any
 
-from propcache import cached_property
 from zha.mixins import LogMixin
 
 from homeassistant.const import ATTR_MANUFACTURER, ATTR_MODEL, ATTR_NAME, EntityCategory
