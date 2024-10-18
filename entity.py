@@ -31,6 +31,15 @@ class ZHAEntity(LogMixin, RestoreEntity, Entity):
     _attr_should_poll = False
     remove_future: asyncio.Future[Any]
 
+    def __init_subclass__(cls, id_suffix: str | None = None, **kwargs: Any) -> None:
+        """Initialize subclass.
+        :param id_suffix: suffix to add to the unique_id of the entity. Used for multi
+                          entities using the same cluster handler/cluster id for the entity.
+        """
+        super().__init_subclass__(**kwargs)
+        if id_suffix:
+            cls.unique_id_suffix = id_suffix
+
     def __init__(self, entity_data: EntityData, *args, **kwargs) -> None:
         """Init ZHA entity."""
         super().__init__(*args, **kwargs)
